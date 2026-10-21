@@ -4,7 +4,7 @@
 
 A **Peking University Data Visualization course group project** examining the value-for-money of English Premier League players. The report and data are presented as the **2024–25 season**; see [data notes](docs/METHODOLOGY.md#data-provenance-and-limitations) for an inconsistency in the report's season description.
 
-**[Original team demo](https://jake-choi9233.github.io/Premier-League-Visualization/)** · **[Original team repository](https://github.com/Jake-Choi9233/Premier-League-Visualization)** · **[Project report (Chinese)](docs/project_report.pdf)** · **[한국어 가이드](README.ko.md)**
+**[Original team demo](https://jake-choi9233.github.io/Premier-League-Visualization/)** · **[Original team repository](https://github.com/Jake-Choi9233/Premier-League-Visualization)** · **[Project report (Chinese)](docs/project_report.pdf)** 
 
 > **Portfolio notice:** This is a cleaned-up, deployment-ready presentation of a **four-person group project**, not an individually authored application. I have confirmed personal responsibility for **data preprocessing, radar-chart-based player analysis and comparison, salary analysis, and contribution-score formula design and calculation**. Other parts of the group application are not claimed as his individual work. The original group repository is credited above.
 
