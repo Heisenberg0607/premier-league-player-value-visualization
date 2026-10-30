@@ -1,12 +1,12 @@
 <!doctype html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>薪资分析</title>
+  <title>Wage Watch</title>
 
   <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet" />
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -16,19 +16,16 @@
   <link rel="stylesheet" href="scatterplot_style.css" />
   <link rel="stylesheet" href="wage.css" />
 
+<link rel="stylesheet" href="../assets/theme.css">
+<script defer src="../assets/site.js"></script>
 </head>
 
-<body>
+<body class="page-salary">
   <!-- 导航栏 -->
-  <nav class="navbar">
-      <a href="../dashboard/dashboard.html" class="active">首页</a>
-      <a href="../sphere_graph/sphere.html">贡献度3D可视化</a>
-      <a href="../salary/salary.html">球员薪资分析</a>
-      <a href="../salary/salary_ratio.html">性价比分析</a>
-  </nav>
-  <div class="content"><div class="container-fluid px-4 py-3">
+  <a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="brand-row"><a class="brand" href="../dashboard/dashboard.html" aria-label="Player Value Lab home"><img src="../assets/premier-league-logo.png" alt="Premier League" width="146" height="66"></a><span class="brand-divider"></span><a class="lab-name" href="../dashboard/dashboard.html">Player Value <strong>Lab.</strong></a><span class="season-pill">SEASON 2024/25</span></div><nav class="site-nav" aria-label="Main navigation"><a href="../dashboard/dashboard.html">Clubs & Players</a><a href="../sphere_graph/sphere.html">Performance Explorer</a><a href="../salary/salary.html" class="is-active" aria-current="page">Wage Watch</a><a href="../salary/salary_ratio.html">Value Check</a></nav></header>
+  <main id="main-content" class="content"><div class="container-fluid px-4 py-3">
     <!-- 可以随便删改 - 崔元皙 -->
-    <h1 class="text-center text-4xl font-bold mb-5">薪资可视化直方图</h1>
+    <div class="page-heading"><span class="eyebrow">2024/25 · WAGE WATCH</span><h1>Who earns the big money?</h1><p>Filter by club, position or country. Hover over a bar to see the player behind the paycheck.</p></div>
 
     <!-- 上边三个过滤器-->
     <div class="row mb-4">
@@ -85,12 +82,12 @@
       </div>
     </div>
 
-    <p>可以自定义你需要的数据范围。鼠标悬停时可以缩放，拖动平移。</p>
+    <p>Pick your filters. Scroll to zoom. Drag to explore.</p>
 
     <!-- 画图 -->
     <div id="chart-area" class="chart-container bg-gray-50 border rounded p-4"></div>
     <div id="fixed-y-axis"></div>
-  </div></div>
+  </div></main>
 
   <!-- JS 工具包，保持顺序一致 -->
   <script src="d3.v7.min.js"></script>
@@ -101,6 +98,7 @@
   <script src="wage_barchart.js"></script>
   <script src="wage_main.js"></script>
 
+<footer class="site-footer"><span>Player Value Lab <b>·</b> 2024/25</span><span>Independent fan analysis. Not affiliated with the Premier League.</span></footer>
 </body>
 
 </html>

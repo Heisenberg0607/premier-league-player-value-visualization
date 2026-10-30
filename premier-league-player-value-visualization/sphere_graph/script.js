@@ -7,14 +7,16 @@ import {
 } from './filters.js'
 // 初始化场景、相机和渲染器
 const scene = new THREE.Scene()
+scene.background = new THREE.Color(0x1e0021)
+const viewport = document.getElementById("container")
 const camera = new THREE.PerspectiveCamera(
   75,
-  window.innerWidth / window.innerHeight,
+  viewport.clientWidth / viewport.clientHeight,
   0.1,
   1000
 )
 const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setSize(viewport.clientWidth, viewport.clientHeight)
 document.getElementById('container').appendChild(renderer.domElement)
 
 // 创建射线检测器和鼠标位置变量
@@ -673,8 +675,9 @@ function onMouseClick (event) {
   }
 
   // 1. 将像素坐标转换为归一化设备坐标 (NDC)
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1 // [-1, 1]
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1 // [-1, 1]
+  const bounds = renderer.domElement.getBoundingClientRect()
+  mouse.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1 // [-1, 1]
+  mouse.y = -((event.clientY - bounds.top) / bounds.height) * 2 + 1 // [-1, 1]
 
   // 2. 从NDC创建射线
   raycaster.setFromCamera(mouse, camera)
@@ -890,7 +893,7 @@ animate()
 
 // 处理窗口大小变化
 window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight
+  camera.aspect = viewport.clientWidth / viewport.clientHeight
   camera.updateProjectionMatrix()
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(viewport.clientWidth, viewport.clientHeight)
 })

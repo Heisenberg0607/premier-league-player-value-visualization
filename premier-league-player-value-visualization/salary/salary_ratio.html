@@ -1,30 +1,27 @@
 <!doctype html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>性价比回归分析</title>
+  <title>Value Check | Player Value Lab</title>
 
   <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet" />
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="scatterplot_style.css" />
   <!-- tippy.js CSS -->
   <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+<link rel="stylesheet" href="../assets/theme.css">
+<script defer src="../assets/site.js"></script>
 </head>
 
-<body>
+<body class="page-salary_ratio">
   <!-- 导航栏 -->
-  <nav class="navbar">
-      <a href="../dashboard/dashboard.html" class="active">首页</a>
-      <a href="../sphere_graph/sphere.html">贡献度3D可视化</a>
-      <a href="../salary/salary.html">球员薪资分析</a>
-      <a href="../salary/salary_ratio.html">性价比分析</a>
-  </nav>
+  <a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="brand-row"><a class="brand" href="../dashboard/dashboard.html" aria-label="Player Value Lab home"><img src="../assets/premier-league-logo.png" alt="Premier League" width="146" height="66"></a><span class="brand-divider"></span><a class="lab-name" href="../dashboard/dashboard.html">Player Value <strong>Lab.</strong></a><span class="season-pill">SEASON 2024/25</span></div><nav class="site-nav" aria-label="Main navigation"><a href="../dashboard/dashboard.html">Clubs & Players</a><a href="../sphere_graph/sphere.html">Performance Explorer</a><a href="../salary/salary.html">Wage Watch</a><a href="../salary/salary_ratio.html" class="is-active" aria-current="page">Value Check</a></nav></header>
 
-  <div class="content"><div class="container-fluid px-4 py-3">
-    <h1 class="text-center text-4xl font-bold mb-5">性价比散点图</h1>
+  <main id="main-content" class="content"><div class="container-fluid px-4 py-3">
+    <div class="page-heading"><span class="eyebrow">2024/25 · VALUE CHECK</span><h1>Overrated? Underrated?</h1><p>Compare wages with contribution. Hover over a player to see whether their performance backs up the price tag.</p></div>
 
     <div class="row mb-4">
       <div class="col-sm-4">
@@ -70,11 +67,11 @@
       </div>
     </div>
 
-    <p>每一个点都代表真实的球员。分界线由数据回归得出</p>
+    <p>Every dot is a player. The regression line puts wages and performance in perspective.</p>
 
     <div id="chart-area" class="chart-container bg-gray-50 border rounded p-4"></div>
     <div id="fixed-y-axis"></div>
-  </div></div>
+  </div></main>
 
   <script src="d3.v7.min.js"></script>
   <script src="d3-tip.min.js"></script>
@@ -84,6 +81,7 @@
   <script src="render_scatterplot.js"></script>
   <script src="scatterplot_main.js"></script>
 
+<footer class="site-footer"><span>Player Value Lab <b>·</b> 2024/25</span><span>Independent fan analysis. Not affiliated with the Premier League.</span></footer>
 </body>
 
 </html>

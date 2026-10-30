@@ -6,12 +6,12 @@ body {
 .dropdown { margin-right: 20px; }
 .radarChart { width: 600px; height: 600px; border: 1px solid #ccc; background: #f9f9f9; }
 .axis line, .axis text { stroke: #ccc; fill: #000000; font-size: 12px; }
-.radar-area { fill: lightblue; fill-opacity: 0.5; pointer-events: none; }
-.radar-stroke { stroke: lightblue; fill: none; stroke-width: 2px; pointer-events: none; }
-.radar-circle { fill: lightblue; cursor: pointer; }
-.radar-area.compare2 { fill: lightcoral; fill-opacity: 0.3; }
-.radar-stroke.compare2 { stroke: lightcoral; }
-.radar-circle.compare2 { fill: lightcoral; }
+.radar-area { fill: #953bff; fill-opacity: 0.5; pointer-events: none; }
+.radar-stroke { stroke: #953bff; fill: none; stroke-width: 2px; pointer-events: none; }
+.radar-circle { fill: #953bff; cursor: pointer; }
+.radar-area.compare2 { fill: #00a866; fill-opacity: 0.3; }
+.radar-stroke.compare2 { stroke: #00a866; }
+.radar-circle.compare2 { fill: #00a866; }
 .diff-label { font-size: 14px; font-weight: bold; text-anchor: start; pointer-events: none; opacity: 0.45; }
 #tooltip {
   position: absolute;

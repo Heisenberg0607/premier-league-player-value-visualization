@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderGKInfo(GK_player);
     } else {
         console.error('Player not found:', playerName);
-        document.querySelector('.player-container').innerHTML = '<p>未找到该球员信息</p>';
+        document.querySelector('.player-container').innerHTML = '<p>Player not found.</p>';
     }
 });
 
@@ -25,14 +25,14 @@ function renderPlayerInfo(player) {
     document.getElementById('player-img').src = player.player_img;
     document.getElementById('player-name').textContent = player.player;
     document.getElementById('player-pos').textContent = `${player.pos} - ${player.main_pos}`;
-    document.getElementById('player-age').textContent = `${player.age}岁`;
+    document.getElementById('player-age').textContent = `${player.age} years`;
     document.getElementById('player-height').textContent = `${player.height}cm`;
     document.getElementById('player-country').textContent = player.country;
     document.getElementById('player-team').textContent = player.squad;
     document.getElementById('player-wage').textContent = player.wage.split('(')[0].trim();
     document.querySelector('.team-logo').src = player.squad_img;
 
-    // 基础数据
+    // Overview
     document.getElementById('90s').textContent = player['90s'];
     document.getElementById('height').textContent = `${player.height}cm`;
     document.getElementById('age').textContent = player.age;
@@ -68,16 +68,16 @@ function renderPlayerInfo(player) {
         document.getElementById('sh_SoT%').textContent = `${player['sh_SoT%']}%`;
         document.getElementById('sh_G/Sh').textContent = player['sh_G/Sh'];
         document.getElementById('sh_Sh').textContent = player.sh_Sh;
-        document.getElementById('sh_Dist').textContent = `${player.sh_Dist}米`;
+        document.getElementById('sh_Dist').textContent = `${player.sh_Dist} m`;
 
-        // 传球数据
+        // Passing
         document.getElementById('pas_Cmp').textContent = player.pas_Cmp;
-        document.getElementById('pas_PrgDist').textContent = `${player.pas_PrgDist}米`;
-        document.getElementById('pas_TotDist').textContent = `${player.pas_TotDist}米`;
+        document.getElementById('pas_PrgDist').textContent = `${player.pas_PrgDist} m`;
+        document.getElementById('pas_TotDist').textContent = `${player.pas_TotDist} m`;
         document.getElementById('pas_KP').textContent = player.pas_KP;
         document.getElementById('pas_1/3').textContent = player['pas_1/3'];
 
-        // 防守数据
+        // Defence
         document.getElementById('def_Tkl').textContent = player.def_Tkl;
         document.getElementById('def_TklW').textContent = player.def_TklW;
         document.getElementById('def_Tkl%').textContent = `${player['def_Tkl%']}%`;
@@ -85,10 +85,10 @@ function renderPlayerInfo(player) {
         document.getElementById('def_Err').textContent = player.def_Err;
         document.getElementById('def_Blocks').textContent = player.def_Blocks;
 
-        // 持球数据
+        // Possession
         document.getElementById('pos_Succ').textContent = player.pos_Succ;
         document.getElementById('pos_Succ%').textContent = `${player['pos_Succ%']}%`;
-        document.getElementById('pos_PrgDist').textContent = `${player.pos_PrgDist}米`;
+        document.getElementById('pos_PrgDist').textContent = `${player.pos_PrgDist} m`;
         document.getElementById('pos_PrgC').textContent = player.pos_PrgC;
         document.getElementById('pos_Carries').textContent = player.pos_Carries;
     } else {
@@ -198,7 +198,7 @@ function renderPlayerInfo(player) {
         maxValue: 100,
         levels: 5,
         roundStrokes: true,
-        color: d3.scaleOrdinal().range(["#3498db"]),
+        color: d3.scaleOrdinal().range(["#700781"]),
         format: d3.format(".0f"),
         legend: false
     };
@@ -206,12 +206,12 @@ function renderPlayerInfo(player) {
     // 中英对照
     function translateLabel(label) {
         const translations = {
-            stamina: '体能',
-            shooting: '射门',
-            control: '控球',
-            passing: '传球',
-            defense: '防守',
-            special: '创造'
+            stamina: 'Stamina',
+            shooting: 'Shooting',
+            control: 'Control',
+            passing: 'Passing',
+            defense: 'Defence',
+            special: 'Creativity'
         };
         return translations[label] || label;
     }

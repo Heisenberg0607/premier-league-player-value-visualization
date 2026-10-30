@@ -1,57 +1,39 @@
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>足球数据可视化系统</title>
+    <title>Premier League | Player Value Lab</title>
     <link rel="stylesheet" href="dashboard.css">
     <script src="d3.v7.min.js"></script>
+<link rel="stylesheet" href="../assets/theme.css">
+<script defer src="../assets/site.js"></script>
 </head>
-<body>
+<body class="page-dashboard">
     <!-- 导航栏 -->
-    <nav class="navbar">
-        <a href="dashboard.html" class="active">首页</a>
-        <a href="../sphere_graph/sphere.html">贡献度3D可视化</a>
-        <a href="../salary/salary.html">球员薪资分析</a>
-        <a href="../salary/salary_ratio.html">性价比分析</a>
-    </nav>
+    <a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="brand-row"><a class="brand" href="../dashboard/dashboard.html" aria-label="Player Value Lab home"><img src="../assets/premier-league-logo.png" alt="Premier League" width="146" height="66"></a><span class="brand-divider"></span><a class="lab-name" href="../dashboard/dashboard.html">Player Value <strong>Lab.</strong></a><span class="season-pill">SEASON 2024/25</span></div><nav class="site-nav" aria-label="Main navigation"><a href="../dashboard/dashboard.html" class="is-active" aria-current="page">Clubs & Players</a><a href="../sphere_graph/sphere.html">Performance Explorer</a><a href="../salary/salary.html">Wage Watch</a><a href="../salary/salary_ratio.html">Value Check</a></nav></header>
 
-    <!-- 主界面 -->
-    <div class="content"><div class="container">
-        <!-- 球场视图 -->
-        <div class="dashboard">
-            <select id="team-select" class="team-selector">
-                <option value="">选择球队</option>
-            </select>
-            <div class="team-info"
-                onclick="window.location.href=
-                    'team.html?team=' + encodeURIComponent(document.getElementById('team-select').value)">
-                <!-- <img id="team-logo" src="" alt="球队徽标"> -->
-                <span id="team-name">请选择球队</span>
-            </div>
-            <p>选择一只你喜欢的队伍，球员将按位置分布，右边为对方球门。点击“球队信息”进入队伍页面。</p>
 
-            <div class="pitch-container">
-                <img src="img/pitch.jpg" class="pitch-bg">
-                <div id="player-markers">
-                    <!-- 动态生成位置标记 -->
-                    <div class="position-line df-line"></div>
-                    <div class="position-line mf-line"></div>
-                    <div class="position-line fw-line"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 球员详情 -->
-        <div id="player-detail" class="player-detail hidden">
-            <button class="close-btn">×</button>
-            <div class="player-header"></div>
-            <div class="radar-container"></div>
-            <div class="stats-grid"></div>
-        </div>
-    </div></div>
-
+<main id="main-content">
+<section class="hero">
+ <div class="hero-copy"><span class="eyebrow"><span class="live-dot"></span> THE 2024/25 PLAYER VALUE LAB</span><h1>Big names.<br>Big money.<br><span>But big performances?</span></h1><p>Explore your club. Compare the players. Find out who delivered in the 2024/25 Premier League.</p><div class="hero-actions"><a class="button button-green" href="#club-explorer">Explore your club <span>↗</span></a><a class="button button-outline" href="../salary/salary_ratio.html">Worth the hype? <span>↗</span></a></div><div class="hero-caption">Overrated. Underrated. <strong>You decide.</strong></div></div>
+ <a class="hero-art" href="../salary/salary_ratio.html" aria-label="Explore player value"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="value-card"><span class="card-kicker">THE BIG QUESTION</span><span class="big-question">Worth<br>every<br><em>penny?</em></span><div class="mini-chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="card-bottom"><span>WAGES × PERFORMANCE</span><span>↗</span></div></div><span class="art-tag tag-one">HYPE ≠ VALUE</span><span class="art-tag tag-two">LET THE STATS TALK ↗</span></a>
+</section>
+<section class="feature-strip" aria-label="Ways to explore">
+ <a href="#club-explorer"><span class="feature-number">01</span><div><h2>Your club. Under the microscope.</h2><p>Pick a club. Tap a player. Compare their stats.</p></div><span class="feature-arrow">↗</span></a>
+ <a href="../sphere_graph/sphere.html"><span class="feature-number">02</span><div><h2>A different view of the game.</h2><p>Spin the 3D view to explore player contributions.</p></div><span class="feature-arrow">↗</span></a>
+ <a href="../salary/salary_ratio.html"><span class="feature-number">03</span><div><h2>Superstar or overpriced?</h2><p>Check wages against performance. Make your call.</p></div><span class="feature-arrow">↗</span></a>
+</section>
+<section id="club-explorer" class="club-explorer">
+ <div class="section-heading"><div><span class="eyebrow">THE CLUB EXPLORER</span><h2>Every player has a story.</h2><p>Choose your club. Select a player on the pitch to open their profile and compare.</p></div><span class="section-index">01 / EXPLORE</span></div>
+ <div class="explorer-toolbar"><label for="team-select">Your club<select id="team-select" class="team-selector"><option value="">Choose a club</option></select></label><a id="team-profile" class="club-profile-link" href="team.html"><span id="team-name">View club profile</span> ↗</a><span id="squad-count" aria-live="polite"></span></div>
+ <div id="data-status" class="data-status" role="status">Loading the 2024/25 squad data…</div>
+ <div class="pitch-container"><img src="img/pitch.jpg" class="pitch-bg" alt="Football pitch showing players by position"><div id="player-markers"></div><span class="pitch-caption">DEFEND ← &nbsp; THE SQUAD &nbsp; → ATTACK</span></div>
+ <div class="pitch-key"><span><i></i> Select a player to see their profile</span><span>Want a head-to-head? Use the two player selectors in any profile. ↗</span></div>
+</section>
+</main>
     <script src="dashboard.js"></script>
+<footer class="site-footer"><span>Player Value Lab <b>·</b> 2024/25</span><span>Independent fan analysis. Not affiliated with the Premier League.</span></footer>
 </body>
 </html>

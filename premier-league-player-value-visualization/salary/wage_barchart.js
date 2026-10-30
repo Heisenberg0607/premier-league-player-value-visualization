@@ -10,7 +10,7 @@ function renderBarChart(playerData) {
 
     d3.select("#chart-area").select("svg").remove();
 
-    
+
 
     const svg = d3.select(".chart-container")
         .append("svg")
@@ -44,7 +44,7 @@ function renderBarChart(playerData) {
 
     const colorScale = d3.scaleLinear()
         .domain([minWage, maxWage])
-        .range(["#FF7F7F", "#B22222"]);
+        .range(["#a65bff", "#37003c"]);
 
 
     const yAxis = d3.axisLeft(yScale)
@@ -145,10 +145,10 @@ function renderBarChart(playerData) {
     .attr("width", xScale.bandwidth())
     .attr("height", height)
     .attr("fill", "transparent")
-    .attr("tabindex", -1) 
-    .style("touch-action", "none") 
+    .attr("tabindex", -1)
+    .style("touch-action", "none")
     .on("mousedown dragstart selectstart", (event) => {
-      event.preventDefault(); 
+      event.preventDefault();
     })
     .each(function(d, i) {
         const hitbox = this;
@@ -165,7 +165,7 @@ function renderBarChart(playerData) {
             content: tooltipContent,
             allowHTML: true,
             placement: "bottom",
-            flip: false, 
+            flip: false,
             popperOptions: {
                 modifiers: [
                     {

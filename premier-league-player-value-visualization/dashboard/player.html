@@ -1,25 +1,22 @@
 <!-- player.html -->
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virgil van Dijk - 球员详情</title>
+    <title>Player Profile | Player Value Lab</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="radar_graph.css">
     <link rel="stylesheet" href="player.css">
+<link rel="stylesheet" href="../assets/theme.css">
+<script defer src="../assets/site.js"></script>
 </head>
-<body>
+<body class="page-player">
     <!-- 导航栏 -->
-    <nav class="navbar">
-        <a href="../dashboard/dashboard.html" class="active">首页</a>
-        <a href="../sphere_graph/sphere.html">贡献度3D可视化</a>
-        <a href="../salary/salary.html">球员薪资分析</a>
-        <a href="../salary/salary_ratio.html">性价比分析</a>
-    </nav>
+    <a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="brand-row"><a class="brand" href="../dashboard/dashboard.html" aria-label="Player Value Lab home"><img src="../assets/premier-league-logo.png" alt="Premier League" width="146" height="66"></a><span class="brand-divider"></span><a class="lab-name" href="../dashboard/dashboard.html">Player Value <strong>Lab.</strong></a><span class="season-pill">SEASON 2024/25</span></div><nav class="site-nav" aria-label="Main navigation"><a href="../dashboard/dashboard.html" class="is-active" aria-current="page">Clubs & Players</a><a href="../sphere_graph/sphere.html">Performance Explorer</a><a href="../salary/salary.html">Wage Watch</a><a href="../salary/salary_ratio.html">Value Check</a></nav></header>
 
-    <div class="player-container">
-        <a href="dashboard.html" class="back-btn">&larr; 返回</a>
+    <div id="main-content" tabindex="-1"></div><div class="player-container">
+        <a href="dashboard.html" class="back-btn">&larr; Back to clubs</a>
 
         <!-- 头部信息卡 -->
         <div class="player-card">
@@ -29,27 +26,27 @@
                     <h1 id="player-name">Virgil van Dijk</h1>
                     <div class="meta-grid">
                         <div class="meta-item">
-                            <label>位置</label>
+                            <label>Position</label>
                             <span id="player-pos"></span>
                         </div>
                         <div class="meta-item">
-                            <label>年龄</label>
+                            <label>Age</label>
                             <span id="player-age"></span>
                         </div>
                         <div class="meta-item">
-                            <label>身高</label>
+                            <label>Height</label>
                             <span id="player-height">195cm</span>
                         </div>
                         <div class="meta-item">
-                            <label>国籍</label>
-                            <span id="player-country">荷兰</span>
+                            <label>Nationality</label>
+                            <span id="player-country">Netherlands</span>
                         </div>
                         <div class="meta-item">
-                            <label>球队</label>
-                            <span id="player-team">利物浦</span>
+                            <label>Club</label>
+                            <span id="player-team">Liverpool</span>
                         </div>
                         <div class="meta-item">
-                            <label>年薪</label>
+                            <label>Annual wages</label>
                             <span id="player-wage">£11,440,000</span>
                         </div>
                     </div>
@@ -63,15 +60,15 @@
                 <div class="non-gk-stats">
                     <div class="stat">
                         <div class="stat-value" id="sh_xG"></div>
-                        <div class="stat-label">预期进球</div>
+                        <div class="stat-label">Expected goals</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="pas_Cmp%"></div>
-                        <div class="stat-label">传球成功率</div>
+                        <div class="stat-label">Pass completion</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="def_Int"></div>
-                        <div class="stat-label">拦截次数</div>
+                        <div class="stat-label">Interceptions</div>
                     </div>
                 </div>
 
@@ -79,22 +76,22 @@
                 <div class="gk-stats hidden">
                     <div class="stat">
                         <div class="stat-value" id="SavePct"></div>
-                        <div class="stat-label">扑救成功率</div>
+                        <div class="stat-label">Save percentage</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="OPA"></div>
-                        <div class="stat-label">出击次数</div>
+                        <div class="stat-label">Sweeper actions</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="StpPct"></div>
-                        <div class="stat-label">拦截传中率</div>
+                        <div class="stat-label">Crosses stopped</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 雷达图 -->
-        <div class="radar-section">
+        <div class="radar-section" id="player-comparison"><span class="eyebrow">THE HEAD-TO-HEAD</span><h2>Who makes your XI?</h2><p>Pick two players below. Compare their strengths on the radar.</p>
             <div class="filter-container">
                 <div style="margin-bottom: 10px;"><strong>Player 1</strong></div>
                 <div style="display: flex; gap: 10px; margin-bottom: 10px;">
@@ -112,7 +109,7 @@
 
             <div id="svgWrapper">
                 <svg class="radarChart"></svg>
-                <button id="resetZoomFixed">图像复位</button>
+                <button id="resetZoomFixed">Reset view</button>
             </div>
 
             <div id="tooltip"></div>
@@ -124,26 +121,26 @@
         <!-- 数据表格 -->
         <div class="stats-tabs">
             <div class="tab-nav">
-                <button class="tab-active" data-tab="basic">基础数据</button>
-                <button data-tab="attack">进攻表现</button>
-                <button data-tab="passing">传球数据</button>
-                <button data-tab="defense">防守数据</button>
-                <button data-tab="possession">持球数据</button>
-                <button class="hidden" data-tab="goalkeeping">守门数据</button>
+                <button class="tab-active" data-tab="basic">Overview</button>
+                <button data-tab="attack">Attack</button>
+                <button data-tab="passing">Passing</button>
+                <button data-tab="defense">Defence</button>
+                <button data-tab="possession">Possession</button>
+                <button class="hidden" data-tab="goalkeeping">Goalkeeping</button>
             </div>
 
-            <!-- 基础数据 -->
+            <!-- Overview -->
             <div class="tab-content tab-active" id="basic">
                 <div class="stat-row">
-                    <span>出场时间(90分钟单位)</span>
+                    <span>Minutes played (90s)</span>
                     <span id="90s">32.0</span>
                 </div>
                 <div class="stat-row">
-                    <span>身高</span>
+                    <span>Height</span>
                     <span id="height">195cm</span>
                 </div>
                 <div class="stat-row">
-                    <span>年龄</span>
+                    <span>Age</span>
                     <span id="age">33</span>
                 </div>
             </div>
@@ -151,107 +148,108 @@
             <!-- 非守门员数据 -->
             <div class="tab-content" id="attack">
                 <div class="stat-row">
-                    <span>射正次数</span>
+                    <span>Shots on target</span>
                     <span id="sh_SoT">7.0</span>
                 </div>
                 <div class="stat-row">
-                    <span>射正率</span>
+                    <span>Shots on target %</span>
                     <span id="sh_SoT%">33.3%</span>
                 </div>
                 <div class="stat-row">
-                    <span>每次射门进球</span>
+                    <span>Goals per shot</span>
                     <span id="sh_G/Sh">0.1</span>
                 </div>
                 <div class="stat-row">
-                    <span>总射门</span>
+                    <span>Total shots</span>
                     <span id="sh_Sh">21.0</span>
                 </div>
                 <div class="stat-row">
-                    <span>平均射门距离</span>
-                    <span id="sh_Dist">13.2米</span>
+                    <span>Average shot distance</span>
+                    <span id="sh_Dist">13.2 m</span>
                 </div>
             </div>
 
             <div class="tab-content" id="passing">
                 <div class="stat-row">
-                    <span>传球成功数</span>
+                    <span>Completed passes</span>
                     <span id="pas_Cmp">2294</span>
                 </div>
                 <div class="stat-row">
-                    <span>推进传球距离</span>
-                    <span id="pas_PrgDist">16438米</span>
+                    <span>Progressive passing distance</span>
+                    <span id="pas_PrgDist">16438 m</span>
                 </div>
                 <div class="stat-row">
-                    <span>总传球距离</span>
-                    <span id="pas_TotDist">41794米</span>
+                    <span>Total passing distance</span>
+                    <span id="pas_TotDist">41794 m</span>
                 </div>
                 <div class="stat-row">
-                    <span>关键传球</span>
+                    <span>Key passes</span>
                     <span id="pas_KP">10</span>
                 </div>
                 <div class="stat-row">
-                    <span>进攻三区传球</span>
+                    <span>Passes into final third</span>
                     <span id="pas_1/3">245</span>
                 </div>
             </div>
 
             <div class="tab-content" id="defense">
                 <div class="stat-row">
-                    <span>抢断尝试</span>
+                    <span>Tackles attempted</span>
                     <span id="def_Tkl">34</span>
                 </div>
                 <div class="stat-row">
-                    <span>抢断成功</span>
+                    <span>Tackles won</span>
                     <span id="def_TklW">16</span>
                 </div>
                 <div class="stat-row">
-                    <span>抢断成功率</span>
+                    <span>Tackles won %</span>
                     <span id="def_Tkl%">55%</span>
                 </div>
                 <div class="stat-row">
-                    <span>解围</span>
+                    <span>Clearances</span>
                     <span id="def_Clr">165</span>
                 </div>
                 <div class="stat-row">
-                    <span>防守失误</span>
+                    <span>Errors</span>
                     <span id="def_Err">4</span>
                 </div>
                 <div class="stat-row">
-                    <span>封堵</span>
+                    <span>Blocks</span>
                     <span id="def_Blocks">22</span>
                 </div>
             </div>
 
             <div class="tab-content" id="possession">
                 <div class="stat-row">
-                    <span>带球成功</span>
+                    <span>Successful take-ons</span>
                     <span id="pos_Succ">3</span>
                 </div>
                 <div class="stat-row">
-                    <span>带球成功率</span>
+                    <span>Successful take-ons %</span>
                     <span id="pos_Succ%">60%</span>
                 </div>
                 <div class="stat-row">
-                    <span>推进带球距离</span>
-                    <span id="pos_PrgDist">4219米</span>
+                    <span>Progressive carrying distance</span>
+                    <span id="pos_PrgDist">4219 m</span>
                 </div>
                 <div class="stat-row">
-                    <span>推进带球次数</span>
+                    <span>Progressive carries</span>
                     <span id="pos_PrgC">18</span>
                 </div>
                 <div class="stat-row">
-                    <span>总持球次数</span>
+                    <span>Total carries</span>
                     <span id="pos_Carries">1589</span>
                 </div>
             </div>
 
             <!-- 守门员数据 -->
             <div class="tab-content" id="goalkeeping">
-                <p>守门员的扑救、出击和传中防守指标显示在上方核心指标区。</p>
+                <p>See saves, sweeping and cross-stopping in the key stats above.</p>
             </div>
         </div>
     </div>
 
     <script src="player.js"></script>
+<footer class="site-footer"><span>Player Value Lab <b>·</b> 2024/25</span><span>Independent fan analysis. Not affiliated with the Premier League.</span></footer>
 </body>
 </html>
