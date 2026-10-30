@@ -1,131 +1,189 @@
-# Premier League Player Value Analytics ⚽
+# Premier League Player Contribution and Wage-Based Value Visualization
 
-**An interactive football analytics dashboard combining on-field performance, position-aware contribution scoring, and wages.**
+**An interactive analytics system for exploring player performance, positions, and wages, and comparing the strengths and relative value of two players.**
 
-A **Peking University Data Visualization course group project** examining the value-for-money of English Premier League players. The report and data are presented as the **2024–25 season**; see [data notes](docs/METHODOLOGY.md#data-provenance-and-limitations) for an inconsistency in the report's season description.
+[English](https://github.com/Heisenberg0607/premier-league-player-value-visualization/blob/main/premier-league-player-value-visualization/README.md) | [한국어](README.ko.md)
 
-**[Project report (Chinese)](docs/project_report.pdf)** 
+[Live Demo](https://premier-league-player-value-visuali.vercel.app/dashboard/dashboard.html) · [Current Repository](https://github.com/Heisenberg0607/premier-league-player-value-visualization) · [Submitted Report](https://github.com/Heisenberg0607/premier-league-player-value-visualization/blob/main/premier-league-player-value-visualization/docs/project_report.pdf)
 
-> **Portfolio notice:** This is a cleaned-up, deployment-ready presentation of a **four-person group project**, not an individually authored application. I have confirmed personal responsibility for **data preprocessing, radar-chart-based player analysis and comparison, salary analysis, and contribution-score formula design and calculation**. Other parts of the group application are not claimed as his individual work. The original group repository is credited above.
+| Item | Description |
+| --- | --- |
+| Project Type | A four-person team project for the Data Visualization course at Peking University |
+| Analysis Scope | Approximately 500 players across 20 Premier League clubs |
+| Core Approach | Position-specific contribution scoring, score standardization, wage–contribution analysis, and visual comparison |
+| My Role | Led the design of the data analysis logic and evaluation framework; handled preprocessing, contribution scoring, and value-for-money analysis; focused on implementing radar-chart-based player comparison |
+| Public Version | A static web application built with D3.js and Three.js, deployed on Vercel |
 
-## Screenshots
+## Project Overview
 
-| Interactive pitch | Player comparison |
-|---|---|
-| ![Team selection and player positions](docs/screenshots/dashboard.png) | ![Radar chart](docs/screenshots/radar.png) |
+### Problem
 
-| Contribution exploration | Performance vs wage |
-|---|---|
-| ![3D contribution sphere](docs/screenshots/contribution-sphere.png) | ![Value-for-money scatterplot](docs/screenshots/cost-effectiveness.png) |
+Raw football statistics alone make it difficult to compare players while accounting for their different positional roles and wages. This project connects performance indicators with wages so that users can explore players' strengths and contributions relative to their pay.
 
-_These are figures extracted from the project's submitted report, not screenshots of a newly verified deployment._
+### Approach
 
-## What you can explore
+We organized performance, position, and wage data obtained from FBref and designed a contribution evaluation framework using different indicators for each position. The contribution scoring procedure described in the report applies group-wise Z-score standardization followed by min-max normalization to produce scores from 0–100; D3.js and Three.js provide interfaces for player comparison and contribution exploration.
 
-| Page | Question it helps answer | Interactions |
-|---|---|---|
-| **Team dashboard** | Who is in the squad and where do they play? | Select club, click player, open club details |
-| **Player profile and radar** | Where is one player stronger than another? | Position-aware comparison, tooltips, zoom |
-| **3D Sphere / 2D Sunburst** | How is contribution distributed across positions/players? | Club/role filters, rotation, zoom, mode switch |
-| **Wage distribution** | How are player salaries distributed? | Filter by team, position, country, wage level; sorting and zoom |
-| **Cost-effectiveness scatterplot** | Who performs above/below the fitted wage–contribution baseline? | Multiple filters, hover, zoom, outlier exploration |
+### What You Can Do
 
-**Analytics approach:** 10 detailed on-field positions grouped into six position-specific scoring categories. Indicators are aggregated and normalized to a 0–100 contribution score within role groups; an **illustrative quadratic fitted baseline** relates the score to annual wages. Players above or below the fitted curve are visualized as relatively undervalued or overvalued. The scoring procedure is team-designed, **not** a validated industry scouting metric. Read the [methodology](docs/METHODOLOGY.md) before interpreting scores.
+Users can select a club, view player profiles, and compare two players' ability indicators on a radar chart. They can explore the relationship between wages and contribution in a scatterplot and narrow down players by team, position, wage range, and classification.
 
-## My contributions
+## Key Results and Screenshots
 
-In this four-person course project, my **self-reported individual responsibilities** were:
+The overall project delivers a web system connecting **club and player exploration, two-player comparison, 3D contribution exploration, wage analysis, and wage-based value classification**. The profile and wage datasets cover 501 players, while the contribution and value-for-money datasets cover 487 players.
 
-| Area | What I worked on |
-|---|---|
-| **Data preprocessing** | Prepared and cleaned football performance and wage data for the project’s analysis and visualizations. |
-| **Radar-based player comparison** | Analyzed player attributes and compared players using the position-aware radar-chart module. This describes my analytical work; it does not claim sole implementation of the module's code. |
-| **Salary analysis** | Analyzed player wage distributions and their relationship to on-field performance/contribution to support the project's player-value perspective. |
-| **Contribution-score design and calculation** | Designed the position-specific player-contribution formula and calculated contribution measures using performance indicators and playing-time considerations. The methodology and normalization are described in the [project report](docs/project_report.pdf) and [methodology notes](docs/METHODOLOGY.md). |
+The images below were captured from the live deployment. The current public version builds on the course team project with updated UI and deployment configuration; screenshots from the original submission are included in the project report.
 
-**Scope:** The team developed the overall interactive system together. This individual statement does **not** claim exclusive authorship of the 3D sphere, sunburst, website infrastructure, or all visualization code. See [detailed attribution and résumé bullets](docs/CONTRIBUTIONS.md).
+| Home Page | Club and Player Exploration |
+| --- | --- |
+| ![The live site's home page with a season introduction and feature guide](docs/screenshots/demo-home.png) | ![Player position exploration with Liverpool selected](docs/screenshots/demo-club.png) |
 
-## Technologies
+| Two-Player Comparison | 3D Contribution Exploration |
+| --- | --- |
+| ![Radar chart comparing Virgil van Dijk and William Saliba](docs/screenshots/demo-radar.png) | ![A 3D sphere for exploring contribution by position and player](docs/screenshots/demo-sphere.png) |
 
-- **D3.js v7:** radar, wage, scatterplot and 2D sunburst visualization
-- **Three.js:** 3D contribution sphere with camera controls
-- **HTML / CSS / vanilla JavaScript:** interactive frontend
-- **Python / pandas:** offline preprocessing described in the report (full pipeline not included)
-- **Static CSV / JSON / precomputed JavaScript datasets:** runtime data; no backend or credentials
+| Wage Analysis | Contribution Relative to Wages |
+| --- | --- |
+| ![Bar chart comparing Manchester City players' annual wages](docs/screenshots/demo-wages.png) | ![Value-for-money scatterplot showing wages, contribution, and the reference curve](docs/screenshots/demo-value.png) |
 
-## Quick start
+## My Contributions
 
-Python 3 is sufficient to serve the static site (no npm installation required):
+In this team project, I **led the design of the data analysis logic and player evaluation framework**.
+
+| Responsibility | Work Performed |
+| --- | --- |
+| Data Cleaning and Integration | Cleaned and integrated player performance, position, and wage data for analysis and visualization. |
+| Position-Specific Contribution Design and Calculation | Selected role-specific performance indicators and designed and calculated contribution scores using group-wise standardization and normalization. |
+| Wage-Based Value Analysis | Calculated value for money by connecting wages with contribution and classified players as overvalued or undervalued relative to the reference baseline. |
+| Player Comparison with D3.js | Contributed to visualization development, focusing on implementing two-player comparison using radar charts. |
+
+## Data and Preprocessing
+
+The data sources are the **FBref performance statistics and player and club wage data** cited in the submitted report. The current web application reads processed JSON, CSV, and JavaScript datasets.
+
+| Data File | Records | Usage |
+| --- | ---: | --- |
+| `dashboard/players_data.json` | 459 | Outfield player profiles and comparison |
+| `dashboard/GK_Data.json` | 42 | Goalkeeper profiles and comparison |
+| `salary/wage_player_data.js` | 501 | Wage bar chart |
+| `sphere_graph/con_merge_rank_s.csv` | 487 | 3D visualization, Sunburst, and club information |
+| `salary/scatterplot_data.js` | 487 | Wage–contribution scatterplot and player classification |
+
+These files serve different purposes and include different player populations, so their record counts should not be added together as a single analytical sample. The numbers above were obtained by directly counting records in the public files.
+
+**The preprocessing described in the submitted report** consists of manually obtaining tables, using pandas to clean formats and missing values, excluding players without appearances, and consolidating duplicate records for transferred players. The repository's `sphere_graph/data.ipynb` contains Excel-to-CSV conversion and coordinate-column merging code; the reproducibility scope of the full preprocessing and scoring procedure is discussed in the limitations below.
+
+The current site labels the season as **2024/25**. The report's inconsistent season references are noted in the limitations and future directions.
+
+## Analytical Methods and System Architecture
+
+### 1. Position-Specific Contribution Indicators
+
+The framework uses **6 evaluation groups**: goalkeepers, center backs, full backs, defensive midfielders, central and attacking midfielders, and forwards. Each group uses different indicators to reflect its positional role.
+
+| Evaluation Group | Example Indicators |
+| --- | --- |
+| Goalkeepers | Save percentage, clean-sheet contribution, PSxG-GA |
+| Center Backs | Aerial duel success rate, block, clearance, and interception contributions |
+| Full Backs | Crosses, progressive carries, tackle contribution |
+| Defensive Midfielders | Ball recoveries, interceptions, progressive passes |
+| Central and Attacking Midfielders | Key passes, shot-creating actions, expected assists |
+| Forwards | Goals, assists, expected goals, progressive passes received |
+
+The contribution calculation described in the report incorporates role-specific indicators and the share of playing time. To account for different value ranges, **contribution values are standardized with Z-scores within each evaluation group, then min-max normalized to a 0–100 scale**.
+
+### 2. Exploring Relative Value Through Wages and Contribution
+
+The scatterplot's horizontal axis represents **annual wages in millions of US dollars**, and its vertical axis represents **contribution scores from 0–100**. The frontend displays the following precomputed quadratic reference curve.
+
+```text
+Reference contribution = 0.0382 × x² − 0.5563 × x + 19.6367
+x = annual wages in millions of US dollars
+```
+
+Relative undervaluation and overvaluation are represented using a player's position above or below the reference curve and the Z-score of the distance stored in the dataset. The four categories are `Severely undervalued`, `Undervalued`, `Overvalued`, and `Severely overvalued`; severe undervaluation and overvaluation correspond to Z-scores above +1 and below −1, respectively.
+
+Here, value refers to **contribution relative to wages**, which is distinct from an estimate of transfer fees or future performance.
+
+### 3. Visualizations Designed for Comparison
+
+| Technology or Structure | Role and Purpose |
+| --- | --- |
+| Python and pandas | Clean tabular data and convert it into visualization-ready files |
+| D3.js | Implement multidimensional radar comparisons, wage bar charts, scatterplots, filters, tooltips, and zoom interactions |
+| Three.js | Explore contribution distributions on a 3D sphere with rotation and zoom |
+| HTML, CSS, and JavaScript | Connect pages and implement browser interactions |
+| Static JSON, CSV, and JavaScript Data | Load processed results in the browser and display them in analytical interfaces |
+
+The radar chart **uses separate indicator sets for goalkeepers and outfield players**. Its ability axes are calculated and scaled separately in the code and should be interpreted separately from the aggregate contribution score in the scatterplot.
+
+```text
+Performance, position, and wage data
+  → Cleaning, integration, and position-specific contribution calculation
+  → Visualization-ready JSON / CSV / JavaScript files
+  → Filtering and comparison in the browser
+     ├─ Club and player profiles
+     ├─ Radar chart comparison
+     ├─ 3D sphere / 2D Sunburst
+     ├─ Wage bar chart
+     └─ Wage–contribution scatterplot
+```
+
+## Evaluation Methods and Findings
+
+### Analytical Results
+
+Contribution scores in the current public **value-for-money dataset of 487 players** range from **0–100**. The stored classification results are as follows.
+
+| Classification | Players |
+| --- | ---: |
+| Severely undervalued | 58 |
+| Undervalued | 129 |
+| Overvalued | 260 |
+| Severely overvalued | 40 |
+| Total | 487 |
+
+This table shows the **exploratory classification distribution** produced by the dataset and reference curve. Its scope is the exploration of relative value within the current sample; agreement with actual player value requires separate validation.
+
+## Setup and Usage
+
+Use Python 3 and a modern browser with WebGL support. Clone the repository and run the following commands.
 
 ```bash
+git clone https://github.com/Heisenberg0607/premier-league-player-value-visualization.git
+cd premier-league-player-value-visualization/premier-league-player-value-visualization
 python -m http.server 8000
 ```
 
-Then open **http://localhost:8000/**. Do not use `file://` or open HTML by double-clicking: `fetch()` and D3 CSV/JSON loading require a local HTTP server.
+Open [http://localhost:8000/](http://localhost:8000/) in your browser to reach the home page. An HTTP server is used for D3's JSON and CSV loading; photos, club crests, and some CDN resources require an internet connection.
 
-**Direct pages:**
+The repository's static file checks can be run from the application folder.
 
-- `/dashboard/dashboard.html` — interactive football pitch
-- `/dashboard/player.html?name=Virgil%20van%20Dijk` — example outfield player
-- `/dashboard/team.html?team=Liverpool` — team details
-- `/sphere_graph/sphere.html` — 3D sphere / 2D sunburst
-- `/salary/salary.html` — annual/weekly wage analysis
-- `/salary/salary_ratio.html` — contribution vs annual wage
-
-## Deployment
-
-**GitHub Pages is recommended. Vercel is optional, not required.** This repository contains no server-side runtime.
-
-**GitHub Pages:** create a repository, push this folder's **contents** (not the parent folder), then in **Settings → Pages → Build and deployment** select **Deploy from a branch → main → /(root)**. The root `index.html` redirects to the dashboard using a **relative path**, which works under `username.github.io/repo-name/`. A `.nojekyll` file is included.
-
-**Vercel (optional):** import the GitHub repository, choose framework **Other**, leave Build Command blank, and use the repository root as the output directory. Keep all static folders together; no API keys or environment variables are needed.
-
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for step-by-step guidance and troubleshooting.
-
-## Project structure
-
-```text
-.
-├── index.html                    # GitHub Pages / Vercel entry point
-├── dashboard/                   # Pitch, player pages and radar chart
-│   ├── dashboard.html
-│   ├── player.html
-│   ├── team.html
-│   ├── players_data.json
-│   └── GK_Data.json
-├── sphere_graph/                # 3D contribution sphere and sunburst
-│   ├── sphere.html
-│   ├── con_merge_rank_s.csv
-│   └── data.ipynb               # Partial conversion notebook only
-├── salary/                      # Salary chart and value scatterplot
-│   ├── salary.html
-│   ├── salary_ratio.html
-│   ├── wage_player_data.js
-│   └── scatterplot_data.js
-├── data_sources/                # Additional Excel exports, not required for runtime
-├── docs/
-│   ├── project_report.pdf
-│   ├── screenshots/
-│   ├── METHODOLOGY.md
-│   ├── CONTRIBUTIONS.md
-│   └── DEPLOYMENT.md
-├── scripts/check_project.py     # Repeatable static integrity checks
-├── README.ko.md
-├── .gitignore
-├── .nojekyll
-└── vercel.json
+```bash
+python scripts/check_project.py
 ```
 
-## Data and interpretability cautions
+## Main Directories
 
-- Figures use **archived historical data**, not live scouting feeds. Player headshots and club crests are linked to external hosts and may occasionally fail to load.
-- Performance scores compare **different position-specific indicator sets**; the score should not be treated as a universal causal measure of individual player value.
-- **Low-minute outliers** are an acknowledged problem (the report discusses a five-minute appearance leading to an extreme contribution score).
-- Salary and contribution data are not refreshed automatically; the original preprocessing scripts and raw FBref exports are **not fully present**, so end-to-end recomputation cannot currently be reproduced from this repository alone.
-- The original report alternates between **2024–25** and **2020–21** in its season description. A final source reconciliation would be required before claiming fully audited data provenance.
+The structure below is relative to the repository's inner `premier-league-player-value-visualization/` folder.
 
-## Team & attribution
+```text
+premier-league-player-value-visualization/
+├─ index.html                 # Dashboard entry point
+├─ dashboard/                 # Club and player profiles, radar chart
+├─ salary/                    # Wage bar chart, value-for-money scatterplot
+├─ sphere_graph/              # 3D sphere, Sunburst, CSV, partial conversion notebook
+├─ data_sources/              # Archived Excel data
+├─ assets/                    # Shared UI resources for the current public version
+├─ docs/                      # Submitted report and methodology, contribution, and deployment documents
+├─ scripts/check_project.py   # Static file integrity checks
+└─ vercel.json                # Static site URL configuration
+```
 
-**Self-reported contributions:** data preprocessing; player analysis/comparison through radar charts; salary analysis; contribution-score formula design and calculation. These contributions have been supplied by the team member and are not independently established by the group report or Git history. Other features remain attributed to the group as a whole. See [CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md) for details.
+## Original Work, References, and Terms of Use
 
-**Data:** [FBref](https://fbref.com/) (historical performance / wage references, as cited in the report). **Original implementation:** the group members above. **Portfolio packaging:** documentation, static entrypoint, data integrity checks, bundled local D3 references, and narrowly scoped GK/team-page compatibility fixes. This repository makes no claim of ownership over third-party libraries, statistics, photographs, or club marks. No general redistribution license is asserted for third-party material.
+- **Project Report:** [Data Visualization Group Project Report](https://github.com/Heisenberg0607/premier-league-player-value-visualization/blob/main/premier-league-player-value-visualization/docs/project_report.pdf)
+- **Data Source:** [FBref](https://fbref.com/), as described in the submitted report's data section and references
+- **Related Implementation:** `dashboard/radar_graph.js`, `salary/render_scatterplot.js`, `salary/scatterplot_data.js`
+
+Statistics, player photos, club and league trademarks, fonts, and external libraries are subject to the terms of their respective rights holders and providers. The public demo is an independent course and portfolio project.
